@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ShelterProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="workerId" Type="int" Nullable="false" />
+          <Property Name="animalType" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="breed" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="birthDate" Type="date" Nullable="false" />
+          <Property Name="height" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="animalWeight" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="vacinationDate" Type="date" />
+          <Property Name="dewormingDate" Type="date" />
+          <Property Name="hasMicrochip" Type="bit" Nullable="false" />
+          <Property Name="readyForAdoption" Type="bit" Nullable="false" />
+          <Property Name="comments" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnimalPictures">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="animalId" Type="int" Nullable="false" />
+          <Property Name="imageUrl" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationForAnimal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="animalId" Type="int" Nullable="false" />
+          <Property Name="workerId" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="streetAddress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="zipcode" Type="int" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="allergies" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="familySituation" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="numberOfKids" Type="int" />
+          <Property Name="youngestKidAge" Type="int" />
+          <Property Name="housingType" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="otherAnimals" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="animalComment" Type="varchar" MaxLength="200" />
+          <Property Name="experience" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="reasonsToAdopt" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="timeAlone" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="tripOptions" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="possibilityForVet" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="infoSource" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="freeComment" Type="varchar" MaxLength="250" />
+          <Property Name="owner" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="surname" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="streetAddress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="personRole" Type="int" Nullable="false" />
+          <Property Name="shelterId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shelter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="streetAddress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_animalId">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="ApplicationForAnimal" Type="Self.ApplicationForAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApplicationForAnimal">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AnimalPictures">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="AnimalPictures" Type="Self.AnimalPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AnimalPictures">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Person_Animal">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="workerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Person_Shelter">
+          <End Role="Shelter" Type="Self.Shelter" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shelter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="shelterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_workerId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="ApplicationForAnimal" Type="Self.ApplicationForAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApplicationForAnimal">
+              <PropertyRef Name="workerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShelterProjectModelStoreContainer">
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalPictures" EntityType="Self.AnimalPictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationForAnimal" EntityType="Self.ApplicationForAnimal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shelter" EntityType="Self.Shelter" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_animalId" Association="Self.fk_animalId">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="ApplicationForAnimal" EntitySet="ApplicationForAnimal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AnimalPictures" Association="Self.fk_AnimalPictures">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="AnimalPictures" EntitySet="AnimalPictures" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Person_Animal" Association="Self.fk_Person_Animal">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Person_Shelter" Association="Self.fk_Person_Shelter">
+            <End Role="Shelter" EntitySet="Shelter" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="fk_workerId" Association="Self.fk_workerId">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ApplicationForAnimal" EntitySet="ApplicationForAnimal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShelterProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="workerId" Type="Int32" Nullable="false" />
+          <Property Name="animalType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="breed" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="birthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="height" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="animalWeight" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="vacinationDate" Type="DateTime" Precision="0" />
+          <Property Name="dewormingDate" Type="DateTime" Precision="0" />
+          <Property Name="hasMicrochip" Type="Boolean" Nullable="false" />
+          <Property Name="readyForAdoption" Type="Boolean" Nullable="false" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ApplicationForAnimals" Relationship="Self.fk_animalId" FromRole="Animal" ToRole="ApplicationForAnimal" />
+          <NavigationProperty Name="AnimalPictures" Relationship="Self.fk_AnimalPictures" FromRole="Animal" ToRole="AnimalPictures" />
+          <NavigationProperty Name="Person" Relationship="Self.fk_Person_Animal" FromRole="Animal" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="AnimalPicture">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="animalId" Type="Int32" Nullable="false" />
+          <Property Name="imageUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Animal" Relationship="Self.fk_AnimalPictures" FromRole="AnimalPictures" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="ApplicationForAnimal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="animalId" Type="Int32" Nullable="false" />
+          <Property Name="workerId" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="streetAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipcode" Type="Int32" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="allergies" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="familySituation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numberOfKids" Type="Int32" />
+          <Property Name="youngestKidAge" Type="Int32" />
+          <Property Name="housingType" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="otherAnimals" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="animalComment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="experience" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="reasonsToAdopt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="timeAlone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tripOptions" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="possibilityForVet" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="infoSource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="freeComment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="owner" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Animal" Relationship="Self.fk_animalId" FromRole="ApplicationForAnimal" ToRole="Animal" />
+          <NavigationProperty Name="Person" Relationship="Self.fk_workerId" FromRole="ApplicationForAnimal" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="streetAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="personRole" Type="Int32" Nullable="false" />
+          <Property Name="shelterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.fk_Person_Animal" FromRole="Person" ToRole="Animal" />
+          <NavigationProperty Name="ApplicationForAnimals" Relationship="Self.fk_workerId" FromRole="Person" ToRole="ApplicationForAnimal" />
+          <NavigationProperty Name="Shelter" Relationship="Self.fk_Person_Shelter" FromRole="Person" ToRole="Shelter" />
+        </EntityType>
+        <EntityType Name="Shelter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="streetAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="People" Relationship="Self.fk_Person_Shelter" FromRole="Shelter" ToRole="Person" />
+        </EntityType>
+        <Association Name="fk_animalId">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="ApplicationForAnimal" Type="Self.ApplicationForAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApplicationForAnimal">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_AnimalPictures">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="AnimalPictures" Type="Self.AnimalPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AnimalPictures">
+              <PropertyRef Name="animalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Person_Animal">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="workerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_workerId">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="ApplicationForAnimal" Type="Self.ApplicationForAnimal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ApplicationForAnimal">
+              <PropertyRef Name="workerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Person_Shelter">
+          <End Role="Shelter" Type="Self.Shelter" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shelter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="shelterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShelterProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals" EntityType="Self.Animal" />
+          <EntitySet Name="AnimalPictures" EntityType="Self.AnimalPicture" />
+          <EntitySet Name="ApplicationForAnimals" EntityType="Self.ApplicationForAnimal" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Shelters" EntityType="Self.Shelter" />
+          <AssociationSet Name="fk_animalId" Association="Self.fk_animalId">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="ApplicationForAnimal" EntitySet="ApplicationForAnimals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_AnimalPictures" Association="Self.fk_AnimalPictures">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="AnimalPictures" EntitySet="AnimalPictures" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Person_Animal" Association="Self.fk_Person_Animal">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_workerId" Association="Self.fk_workerId">
+            <End Role="Person" EntitySet="People" />
+            <End Role="ApplicationForAnimal" EntitySet="ApplicationForAnimals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Person_Shelter" Association="Self.fk_Person_Shelter">
+            <End Role="Shelter" EntitySet="Shelters" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShelterProjectModelStoreContainer" CdmEntityContainer="ShelterProjectEntities">
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="ShelterProjectModel.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="workerId" ColumnName="workerId" />
+                <ScalarProperty Name="animalType" ColumnName="animalType" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="breed" ColumnName="breed" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="animalWeight" ColumnName="animalWeight" />
+                <ScalarProperty Name="vacinationDate" ColumnName="vacinationDate" />
+                <ScalarProperty Name="dewormingDate" ColumnName="dewormingDate" />
+                <ScalarProperty Name="hasMicrochip" ColumnName="hasMicrochip" />
+                <ScalarProperty Name="readyForAdoption" ColumnName="readyForAdoption" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalPictures">
+            <EntityTypeMapping TypeName="ShelterProjectModel.AnimalPicture">
+              <MappingFragment StoreEntitySet="AnimalPictures">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="animalId" ColumnName="animalId" />
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationForAnimals">
+            <EntityTypeMapping TypeName="ShelterProjectModel.ApplicationForAnimal">
+              <MappingFragment StoreEntitySet="ApplicationForAnimal">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="animalId" ColumnName="animalId" />
+                <ScalarProperty Name="workerId" ColumnName="workerId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="streetAddress" ColumnName="streetAddress" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="allergies" ColumnName="allergies" />
+                <ScalarProperty Name="familySituation" ColumnName="familySituation" />
+                <ScalarProperty Name="numberOfKids" ColumnName="numberOfKids" />
+                <ScalarProperty Name="youngestKidAge" ColumnName="youngestKidAge" />
+                <ScalarProperty Name="housingType" ColumnName="housingType" />
+                <ScalarProperty Name="otherAnimals" ColumnName="otherAnimals" />
+                <ScalarProperty Name="animalComment" ColumnName="animalComment" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="reasonsToAdopt" ColumnName="reasonsToAdopt" />
+                <ScalarProperty Name="timeAlone" ColumnName="timeAlone" />
+                <ScalarProperty Name="tripOptions" ColumnName="tripOptions" />
+                <ScalarProperty Name="possibilityForVet" ColumnName="possibilityForVet" />
+                <ScalarProperty Name="infoSource" ColumnName="infoSource" />
+                <ScalarProperty Name="freeComment" ColumnName="freeComment" />
+                <ScalarProperty Name="owner" ColumnName="owner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="ShelterProjectModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="streetAddress" ColumnName="streetAddress" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="personRole" ColumnName="personRole" />
+                <ScalarProperty Name="shelterId" ColumnName="shelterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shelters">
+            <EntityTypeMapping TypeName="ShelterProjectModel.Shelter">
+              <MappingFragment StoreEntitySet="Shelter">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="streetAddress" ColumnName="streetAddress" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

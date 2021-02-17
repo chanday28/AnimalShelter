@@ -1,0 +1,21 @@
+﻿@using TeamShelterProject.Models;
+@{
+    ViewBag.Title = "Home Page";
+}
+<h1>Shelter mission</h1>
+    
+    
+    @Html.Partial("_Animal", (List<Animal>)ViewBag.Animals)
+    <p><a href="~/Animals/Index" class="btn btn-primary btn-lg">See all animals &raquo;</a></p>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Our shelters:</h2>
+        @Html.Partial("_Shelter", (List<Shelter>)ViewBag.Shelters)
+        <p><a class="btn btn-default" href="~/Shelters/Index">Go to shelter page &raquo;</a></p>
+    </div>
+    
+    
+</div>

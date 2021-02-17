@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TeamShelterProject.Models.Animal>
+
+<ul class="all-animals js-all-animals">
+    @foreach (var item in Model)
+    {
+        string imgpath = item.id + ".jpg";
+        <li>
+            
+            <table class="table">
+                <tr class="all-animals-row">
+                    <td>
+                        <h2>@Html.ActionLink(item.name, "../Animals/Details", new { id = item.id })</h2>
+                    </td>
+                    <td></td>
+
+                </tr>
+                <tr class="all-animals-row">
+                    <td>
+                        <img src="~/Content/animalImages/@imgpath" width="150" height="150" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                        <br />
+                        Breed: @Html.DisplayFor(modelItem => item.breed)
+                        <br />
+                        Date of birth: @Html.DisplayFor(modelItem => item.birthDate)
+                    </td>
+                </tr>
+            </table>
+        </li>
+    }
+</ul>

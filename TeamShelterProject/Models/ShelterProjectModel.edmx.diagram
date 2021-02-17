@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8a4773d899a44b6d946f9786688124e0" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="ShelterProjectModel.Animal" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShelterProjectModel.AnimalPicture" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShelterProjectModel.ApplicationForAnimal" Width="1.5" PointX="11" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShelterProjectModel.Person" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShelterProjectModel.Shelter" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="ShelterProjectModel.fk_animalId" ManuallyRouted="false" />
+        <AssociationConnector Association="ShelterProjectModel.fk_AnimalPictures" ManuallyRouted="false" />
+        <AssociationConnector Association="ShelterProjectModel.fk_Person_Animal" ManuallyRouted="false" />
+        <AssociationConnector Association="ShelterProjectModel.fk_workerId" ManuallyRouted="false" />
+        <AssociationConnector Association="ShelterProjectModel.fk_Person_Shelter" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

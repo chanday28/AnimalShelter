@@ -1,0 +1,131 @@
+﻿@model IEnumerable<TeamShelterProject.Models.Person>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2>Workers</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.streetAddress)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.personRole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shelter.name)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.personRole == 1 || item.personRole == 0)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.surname)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.streetAddress)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.personRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shelter.name)
+        </td>*@
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>*@
+    </tr>
+    }
+}
+
+</table>
+
+<h2>Volunteers</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.streetAddress)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.personRole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Shelter.name)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.personRole == 2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.streetAddress)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.personRole)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shelter.name)
+                </td>*@
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>*@
+            </tr>
+        }
+    }
+
+</table>

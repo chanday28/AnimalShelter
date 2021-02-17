@@ -1,0 +1,144 @@
+﻿@model IEnumerable<TeamShelterProject.Models.Animal>
+
+@{
+    ViewBag.Title = "Animals ready for adoption:";
+}
+
+@if (User.Identity.IsAuthenticated == false)
+{
+    <h1>Animals ready for adoption:</h1>
+    foreach (var item in Model)
+    {
+        if (item.readyForAdoption == true)
+        {
+            string imgpath = item.id + ".jpg";
+            <h2>@Html.ActionLink(item.name, "Details", new { id = item.id })</h2>
+            <table class="table">
+                <tr>
+                    <td>
+                        <img src="~/Content/animalImages/@imgpath" width="150" height="150" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.animalType)
+                        <br />
+                        @Html.DisplayFor(modelItem => item.gender)
+                        <br />
+                        <br />
+                        Breed: @Html.DisplayFor(modelItem => item.breed)
+                        <br />
+                        <br />
+                        Date of birth: @Html.DisplayFor(modelItem => item.birthDate)
+                        @*<br />
+                        <br />
+                        @Html.DisplayFor(modelItem => item.comments)
+                        <br />*@
+                    </td>
+                    <td>
+                        <a href="~/ApplicationForAnimals/Create" class="btn btn-primary btn-lg">leave an application for adopt &raquo;</a>
+                    </td>
+                    
+                </tr>
+            </table>
+        }
+    }
+}
+else
+{
+    <h1>Animals</h1>
+    <table class="table">
+        <tr>
+            <th>
+                Animal Picture
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.animalType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.animalWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vacinationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dewormingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hasMicrochip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.readyForAdoption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comments)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            string imgpath = item.id + ".jpg";
+            <tr>
+                <td>
+                    <img src="~/Content/animalImages/@imgpath" width="150" height="150" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.animalType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.birthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.animalWeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vacinationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dewormingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hasMicrochip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.readyForAdoption)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comments)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+        </table>
+
+
+ };

@@ -1,0 +1,189 @@
+﻿@model IEnumerable<TeamShelterProject.Models.ApplicationForAnimal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Animal.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Animal.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.streetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zipcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.allergies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.familySituation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberOfKids)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.youngestKidAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.housingType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.otherAnimals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.animalComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reasonsToAdopt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeAlone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tripOptions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.possibilityForVet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.infoSource)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.freeComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.owner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Animal.animalType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.firstName)
+        </th>*@
+               <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.id
+        </td>
+        <td>
+            @item.Animal.id
+        </td>
+        <td>
+            @item.Animal.name
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.surname)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.streetAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zipcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.allergies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.familySituation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOfKids)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.youngestKidAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.housingType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.otherAnimals)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.animalComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.experience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reasonsToAdopt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeAlone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tripOptions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.possibilityForVet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.infoSource)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.freeComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.owner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Animal.animalType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.firstName)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
